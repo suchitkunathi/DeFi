@@ -7,8 +7,8 @@ class Transaction:
         self.sender = sender_pubkey
         self.receiver = receiver_pubkey
         self.amount = amount
-        self.action = action # transfer, deposit, borrow, repay
-        self.data = data # Extra data if needed
+        self.action = action                                   
+        self.data = data                       
         self.timestamp = time.time()
         self.signature = signature
 
@@ -23,8 +23,8 @@ class Transaction:
         }
 
     def get_hashable_string(self):
-        # Create a string representation for signing (excluding signature)
-        # Ensure deterministic order
+                                                                          
+                                    
         data = self.to_dict()
         return json.dumps(data, sort_keys=True)
 
@@ -40,10 +40,10 @@ class Transaction:
 
 class Ledger:
     def __init__(self):
-        self.chain = [] # List of blocks or just transactions for simplicity
-        self.state = {} # Map address -> balance (or other state)
-        # For this simulation, we'll keep a simple state mapping
-        # address -> { "ETH": 100, "USDC": 500 }
+        self.chain = []                                                     
+        self.state = {}                                          
+                                                                
+                                                
 
     def get_balance(self, address, token="ETH"):
         user_state = self.state.get(address, {})
@@ -59,7 +59,7 @@ class Ledger:
         if not tx.is_valid():
             raise ValueError("Invalid signature")
         
-        # Basic transfer logic
+                              
         if tx.action == "transfer":
             sender_bal = self.get_balance(tx.sender)
             if sender_bal < tx.amount:
